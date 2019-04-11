@@ -21,6 +21,9 @@ enum class Atoms
 class Recorder
 {
  public:
+   /**
+    * Thrown when attempting to connect to an x server has failed.
+    */
    struct FailedConnectionException : public std::exception
    {
       const int error;
@@ -30,9 +33,18 @@ class Recorder
       FailedConnectionException(int error);
    };
 
+   /**
+    * Gets the titles of all windows that are open.
+    * @return the titles of all windows that are open
+    */
    std::vector<std::string> get_all_window_titles();
 
+   /**
+    * @throws FailedConnectionException if a connection to the x server could
+    * not be established
+    */
    Recorder();
+
    ~Recorder();
 
  private:
